@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Timed Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+    }
+    #timer {
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body onload="startTimer()">
+
+  <div id="timer">⏱ Time Left: 10:00</div>
+
+  <iframe src="https://forms.gle/6bdFHtbHyBMue9KD7"></iframe>
+
+  <script>
+    let timeLeft = 600; // 600 seconds = 10 minutes
+
+    function startTimer() {
+      const timerInterval = setInterval(() => {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById("timer").textContent =
+          `⏱ Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          alert("Time's up! The quiz will now close.");
+          window.location.href = "https://www.google.com"; // Change this to thank you page or result page
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
